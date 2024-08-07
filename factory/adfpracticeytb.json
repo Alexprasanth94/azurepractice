@@ -1,0 +1,9 @@
+{
+	"name": "adfpracticeytb",
+	"properties": {
+		"globalConfigurations": {
+			"PipelineBillingEnabled": "true"
+		}
+	},
+	"location": "southindia"
+}
