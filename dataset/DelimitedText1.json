@@ -5,12 +5,16 @@
 			"referenceName": "AzureDataLakeStorage3",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"file_name_ds": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "circuits.csv",
 				"fileSystem": "folder1"
 			},
 			"columnDelimiter": ",",
