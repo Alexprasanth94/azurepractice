@@ -8,6 +8,9 @@
 				"pipelineReference": {
 					"referenceName": "copy_storage_event",
 					"type": "PipelineReference"
+				},
+				"parameters": {
+					"file_name": "@fileBody().fileName"
 				}
 			}
 		],
