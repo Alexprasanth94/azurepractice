@@ -39,15 +39,11 @@
 			"type": "string",
 			"defaultValue": "https://destidatalakealex.dfs.core.windows.net/"
 		},
-		"storage_event_properties_typeProperties_scope": {
+		"Storage_Event_properties_pipeline1_parameters_file_name": {
 			"type": "string",
-			"defaultValue": "/subscriptions/d09d9d64-8f3e-4a4e-b302-14db7d2242fb/resourceGroups/PracticeADF/providers/Microsoft.Storage/storageAccounts/sourcedatalakealex"
+			"defaultValue": "@triggerBody.fileName"
 		},
-		"storage_event1_properties_copy_storage_event_parameters_file_name": {
-			"type": "string",
-			"defaultValue": "@triggerBody().fileName"
-		},
-		"storage_event1_properties_typeProperties_scope": {
+		"Storage_Event_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/d09d9d64-8f3e-4a4e-b302-14db7d2242fb/resourceGroups/PracticeADF/providers/Microsoft.Storage/storageAccounts/sourcedatalakealex"
 		},
@@ -102,14 +98,11 @@
 					"AzureDataLakeStorage4_properties_typeProperties_url": {
 						"value": "[parameters('AzureDataLakeStorage4_properties_typeProperties_url')]"
 					},
-					"storage_event_properties_typeProperties_scope": {
-						"value": "[parameters('storage_event_properties_typeProperties_scope')]"
+					"Storage_Event_properties_pipeline1_parameters_file_name": {
+						"value": "[parameters('Storage_Event_properties_pipeline1_parameters_file_name')]"
 					},
-					"storage_event1_properties_copy_storage_event_parameters_file_name": {
-						"value": "[parameters('storage_event1_properties_copy_storage_event_parameters_file_name')]"
-					},
-					"storage_event1_properties_typeProperties_scope": {
-						"value": "[parameters('storage_event1_properties_typeProperties_scope')]"
+					"Storage_Event_properties_typeProperties_scope": {
+						"value": "[parameters('Storage_Event_properties_typeProperties_scope')]"
 					}
 				}
 			},

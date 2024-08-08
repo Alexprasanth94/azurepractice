@@ -39,15 +39,11 @@
 			"type": "string",
 			"defaultValue": "https://destidatalakealex.dfs.core.windows.net/"
 		},
-		"storage_event_properties_typeProperties_scope": {
+		"Storage_Event_properties_pipeline1_parameters_file_name": {
 			"type": "string",
-			"defaultValue": "/subscriptions/d09d9d64-8f3e-4a4e-b302-14db7d2242fb/resourceGroups/PracticeADF/providers/Microsoft.Storage/storageAccounts/sourcedatalakealex"
+			"defaultValue": "@triggerBody.fileName"
 		},
-		"storage_event1_properties_copy_storage_event_parameters_file_name": {
-			"type": "string",
-			"defaultValue": "@triggerBody().fileName"
-		},
-		"storage_event1_properties_typeProperties_scope": {
+		"Storage_Event_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/d09d9d64-8f3e-4a4e-b302-14db7d2242fb/resourceGroups/PracticeADF/providers/Microsoft.Storage/storageAccounts/sourcedatalakealex"
 		}
@@ -125,53 +121,12 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/storage_event')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Stopped",
-				"pipelines": [],
-				"type": "BlobEventsTrigger",
-				"typeProperties": {
-					"blobPathBeginsWith": "/folder1/blobs/",
-					"blobPathEndsWith": ".csv",
-					"ignoreEmptyBlobs": true,
-					"scope": "[parameters('storage_event_properties_typeProperties_scope')]",
-					"events": [
-						"Microsoft.Storage.BlobCreated"
-					]
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/trigger1')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Stopped",
-				"pipelines": [],
-				"type": "ScheduleTrigger",
-				"typeProperties": {
-					"recurrence": {
-						"frequency": "Minute",
-						"interval": 15,
-						"startTime": "2024-08-08T11:08:00",
-						"timeZone": "India Standard Time"
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/DelimitedText1')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "AzureDataLakeStorage3",
+					"referenceName": "AzureDataLakeStorage1",
 					"type": "LinkedServiceReference"
 				},
 				"parameters": {
@@ -235,7 +190,7 @@
 				]
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage3')]"
+				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage1')]"
 			]
 		},
 		{
@@ -244,7 +199,7 @@
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "AzureDataLakeStorage4",
+					"referenceName": "AzureDataLakeStorage2",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
@@ -262,11 +217,11 @@
 				"schema": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage4')]"
+				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage2')]"
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/copy_storage_event')]",
+			"name": "[concat(parameters('factoryName'), '/pipeline1')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -309,116 +264,6 @@
 							"enableStaging": false,
 							"translator": {
 								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"name": "circuitId",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "circuitId",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "circuitRef",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "circuitRef",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "name",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "name",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "location",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "location",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "country",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "country",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "lat",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "lat",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "lng",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "lng",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "alt",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "alt",
-											"type": "String",
-											"physicalType": "String"
-										}
-									},
-									{
-										"source": {
-											"name": "url",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "url",
-											"type": "String",
-											"physicalType": "String"
-										}
-									}
-								],
 								"typeConversion": true,
 								"typeConversionSettings": {
 									"allowDataTruncation": true,
@@ -463,20 +308,20 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/storage_event1')]",
+			"name": "[concat(parameters('factoryName'), '/Storage_Event')]",
 			"type": "Microsoft.DataFactory/factories/triggers",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"annotations": [],
-				"runtimeState": "Started",
+				"runtimeState": "Stopped",
 				"pipelines": [
 					{
 						"pipelineReference": {
-							"referenceName": "copy_storage_event",
+							"referenceName": "pipeline1",
 							"type": "PipelineReference"
 						},
 						"parameters": {
-							"file_name": "[parameters('storage_event1_properties_copy_storage_event_parameters_file_name')]"
+							"file_name": "[parameters('Storage_Event_properties_pipeline1_parameters_file_name')]"
 						}
 					}
 				],
@@ -484,14 +329,14 @@
 				"typeProperties": {
 					"blobPathBeginsWith": "/folder1/blobs/",
 					"ignoreEmptyBlobs": true,
-					"scope": "[parameters('storage_event1_properties_typeProperties_scope')]",
+					"scope": "[parameters('Storage_Event_properties_typeProperties_scope')]",
 					"events": [
 						"Microsoft.Storage.BlobCreated"
 					]
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/copy_storage_event')]"
+				"[concat(variables('factoryId'), '/pipelines/pipeline1')]"
 			]
 		}
 	]
