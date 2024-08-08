@@ -3,17 +3,7 @@
 	"properties": {
 		"annotations": [],
 		"runtimeState": "Started",
-		"pipelines": [
-			{
-				"pipelineReference": {
-					"referenceName": "copy_storage_event",
-					"type": "PipelineReference"
-				},
-				"parameters": {
-					"file_name": "@triggerBody().fileName"
-				}
-			}
-		],
+		"pipelines": [],
 		"type": "BlobEventsTrigger",
 		"typeProperties": {
 			"blobPathBeginsWith": "/folder1/blobs/",
