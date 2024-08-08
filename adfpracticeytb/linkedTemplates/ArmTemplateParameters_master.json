@@ -29,6 +29,9 @@
 		"AzureDataLakeStorage4_properties_typeProperties_url": {
 			"value": "https://destidatalakealex.dfs.core.windows.net/"
 		},
+		"storage_event_properties_Storage_Event_trigger_parameters_file_name": {
+			"value": "@triggerBody().fileName"
+		},
 		"storage_event_properties_typeProperties_scope": {
 			"value": "/subscriptions/d09d9d64-8f3e-4a4e-b302-14db7d2242fb/resourceGroups/PracticeADF/providers/Microsoft.Storage/storageAccounts/sourcedatalakealex"
 		},

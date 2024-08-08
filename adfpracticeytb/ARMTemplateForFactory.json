@@ -39,6 +39,10 @@
 			"type": "string",
 			"defaultValue": "https://destidatalakealex.dfs.core.windows.net/"
 		},
+		"storage_event_properties_Storage_Event_trigger_parameters_file_name": {
+			"type": "string",
+			"defaultValue": "@triggerBody().fileName"
+		},
 		"storage_event_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/d09d9d64-8f3e-4a4e-b302-14db7d2242fb/resourceGroups/PracticeADF/providers/Microsoft.Storage/storageAccounts/sourcedatalakealex"
@@ -791,6 +795,11 @@
 				"policy": {
 					"elapsedTimeMetric": {}
 				},
+				"parameters": {
+					"file_name": {
+						"type": "string"
+					}
+				},
 				"folder": {
 					"name": "NewPractice"
 				},
@@ -814,7 +823,9 @@
 							"referenceName": "Storage_Event_trigger",
 							"type": "PipelineReference"
 						},
-						"parameters": {}
+						"parameters": {
+							"file_name": "[parameters('storage_event_properties_Storage_Event_trigger_parameters_file_name')]"
+						}
 					}
 				],
 				"type": "BlobEventsTrigger",
